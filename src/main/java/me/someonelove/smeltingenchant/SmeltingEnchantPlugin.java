@@ -10,14 +10,11 @@ public final class SmeltingEnchantPlugin extends JavaPlugin implements EnchantPl
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         INSTANCE = this;
-
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
     }
 
     @Override

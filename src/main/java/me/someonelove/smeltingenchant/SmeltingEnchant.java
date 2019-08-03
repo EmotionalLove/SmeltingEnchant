@@ -1,7 +1,10 @@
 package me.someonelove.smeltingenchant;
 
 import com.sucy.enchant.api.CustomEnchantment;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -10,26 +13,26 @@ import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 public class SmeltingEnchant extends CustomEnchantment {
-
-    public static ArrayList<Integer> eid = new ArrayList<>();
 
     private static final Material[] PERMITTED_ITEMS = new Material[]{
             Material.WOOD_PICKAXE, Material.STONE_PICKAXE,
             Material.IRON_PICKAXE, Material.GOLD_PICKAXE,
             Material.DIAMOND_PICKAXE};
 
-    protected SmeltingEnchant() {
+    /* package-private */ SmeltingEnchant() {
         super("Smelting", "auto-smelts block drops");
         this.addNaturalItems(PERMITTED_ITEMS);
         this.setWeight(1.0);
         this.setTableEnabled(true);
     }
 
+    /**
+     * Called when a block is broken
+     */
     @Override
     public void applyBreak(LivingEntity user, Block block, int level, BlockEvent event) {
         Player player = (Player) user;
@@ -45,6 +48,7 @@ public class SmeltingEnchant extends CustomEnchantment {
                 break;
             }
         }
+        // black magic required to modify the drops
         block.setType(Material.AIR);
         drops.forEach(e -> {
            user.getWorld().dropItemNaturally(block.getLocation(), e);
