@@ -1,0 +1,6 @@
+name: SmeltingEnchants
+version: 1.0.0
+main: me.someonelove.smeltingenchant.SmeltingEnchantPlugin
+depend: [EnchantmentAPI]
+authors: [Sasha]
+description: SmeltingEnchants
